@@ -48,6 +48,11 @@ class App extends React.Component {
       console.log(e.target)
   }
 
+  clearCompleted = e => {
+    console.log('clear em!')
+    this.setState({ todos: this.state.todos.filter(item => !item.completed)})
+  }
+
   render() {
     return (
       <div className="container">
@@ -61,6 +66,7 @@ class App extends React.Component {
           inputText={this.state.inputText}
           addTask={this.addTask}
           handleChanges={this.handleChanges}
+          clearCompleted={this.clearCompleted}
         />
       </div>
     );
