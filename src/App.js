@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import TodoList from './components/TodoComponents/TodoList'
 import TodoForm from './components/TodoComponents/TodoForm'
 
@@ -10,26 +10,23 @@ class App extends React.Component {
       inputText: '',
     }
   }
+  
+  handleChanges = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
 
   addTask = e => {
     e.preventDefault()
-
     const newTask = {
       task: this.state.inputText,
       id: Date.now(),
       completed: false
     }
-
     this.setState({
       todos: [...this.state.todos, newTask],
       inputText: ''
-    })
-  }
-
-  handleChanges = e => {
-    e.preventDefault()
-    this.setState({
-      [e.target.name]: e.target.value
     })
   }
 
@@ -46,17 +43,17 @@ class App extends React.Component {
       })
     })
   }
-
-  // crossOut = e => {
-  //   e.target.style.textDecoration = "line-through"
-  //     console.log(e.target)
-  // }
-
+  
   clearCompleted = () => {
     console.log('clear em!')
     this.setState({ 
       todos: this.state.todos.filter(item => !item.completed)})
   }
+
+  // crossOut = e => {
+  //   e.target.style.textDecoration = "line-through"
+  //     console.log(e.target)
+  // }
 
   render() {
     return (
