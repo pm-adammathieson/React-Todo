@@ -37,36 +37,41 @@ class App extends React.Component {
     this.setState({
       todos: this.state.todos.map(item => {
         if (id === item.id) {
-          item.completed = !item.completed
+          return {
+            ...item,
+            completed: !item.completed
+          }
         }
         return item
       })
     })
   }
-  crossOut = e => {
-    e.target.style.textDecoration = "line-through"
-      console.log(e.target)
-  }
 
-  clearCompleted = e => {
+  // crossOut = e => {
+  //   e.target.style.textDecoration = "line-through"
+  //     console.log(e.target)
+  // }
+
+  clearCompleted = () => {
     console.log('clear em!')
-    this.setState({ todos: this.state.todos.filter(item => !item.completed)})
+    this.setState({ 
+      todos: this.state.todos.filter(item => !item.completed)})
   }
 
   render() {
     return (
       <div className="container">
         <h2>Todos</h2>
-        <TodoList 
-          todos={this.state.todos} 
-          toggleComplete={this.toggleComplete}
-          crossOut={this.crossOut}
-        />
         <TodoForm 
           inputText={this.state.inputText}
           addTask={this.addTask}
           handleChanges={this.handleChanges}
           clearCompleted={this.clearCompleted}
+        />
+        <TodoList 
+          todos={this.state.todos} 
+          toggleComplete={this.toggleComplete}
+          crossOut={this.crossOut}
         />
       </div>
     );
